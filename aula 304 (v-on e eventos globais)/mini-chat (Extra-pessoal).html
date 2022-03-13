@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div>
+      <label for="mensagem"> Mensagem enviada apertando enter usando o @keyup.enter </label>
+      <input v-model="mensagemEnter" @keyup.enter="ativar" type="text">
+      <div class="chat">
+        <div class="msg" v-if="eventoEnter" v-for="message in chat">
+          <span>{{message}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        mensagemEnter: '',
+        chat: [],
+        eventoEnter: false
+      },
+      methods: {
+        ativar(value) {
+          this.eventoEnter = true
+          this.chat.push(this.mensagemEnter)
+          this.mensagemEnter = ''
+        }
+      }
+    })
+  </script>
+  
+  <style>
+    label {
+      display: block;
+    }
+    .chat {
+      width: 250px;
+      height: 250px;
+      overflow: scroll;
+      background-color: aqua;
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 10px;
+    }
+    .msg {
+      width: max-content;
+      overflow-wrap: break-word;
+      max-width: 200px;
+      background-color: rgb(4, 131, 131);
+      padding: 5px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+  </style>
+</body>
+</html>

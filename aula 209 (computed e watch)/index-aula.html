@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 209</title>
+</head>
+<body>
+  <div id="app">
+    <h1>R$ {{precoDescontado}}</h1>
+    <div>
+      <input v-model="cep" type="text" placeholder="CEP" maxlength="8">
+      <ul>
+        <li v-for="(dado, key) in local"> <b> {{ key }}: </b>{{ dado }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        preco: 200,
+        descontoPorcentagem: 10,
+        cep: '',
+        local: {}
+      },
+      computed: {
+        precoDescontado() {
+          return this.preco - ((this.preco * this.descontoPorcentagem) / 100)
+        }
+      },
+      watch: {
+        cep(value) {
+          if(this.cep.length === 8)
+          fetch(`https://viacep.com.br/ws/${value}/json/`)
+            .then(response => response.json())
+            .then(local => {
+              this.local = local
+            })
+        }
+      }
+    })
+  </script>
+</body>
+</html>

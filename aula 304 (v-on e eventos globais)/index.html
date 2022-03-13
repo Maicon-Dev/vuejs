@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div style="position: fixed">
+      <p>
+        Evento scroll: {{totalScroll}}
+      </p>
+      <p>
+        Evento keyup: {{totalScrollEvent2}}
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        totalScroll: 0,
+        totalScrollEvent2: ''
+      },
+      methods: {
+        handleScroll(event) {
+          console.log(event)
+          //evento global no created
+          if(event.key === "Enter") {
+            this.totalScrollEvent2 = window.scrollY
+          }
+          this.totalScroll = window.scrollY
+        }
+      },
+      created() {
+        //escutando para um evento global
+        window.addEventListener("scroll", this.handleScroll)
+        window.addEventListener("keyup", this.handleScroll)
+      }
+    })
+  </script>
+
+  <style>
+    body {
+      height: 2000px;
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-for="fruta, key in frutas" :key="key">
+      <p> Temos {{ fruta.total }} de {{ fruta.nome }} </p>
+    </div>
+
+    <div> {{ line }} </div>
+
+    <button @click="adicionar"> Adicionar </button>
+    <button @click="remover"> Remover </button>
+    <div>
+      <ul>
+        <li v-for="(item, index) in itens" :key="index"> {{ item }} {{index}} </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        frutas: [{nome: 'Banana', total: 20}, {nome: 'Laranja', total: 35}, {nome: 'Manga', total: 0}],
+        line: "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=",
+        itens: ['Item']
+      },
+      methods: {
+        adicionar() {
+          this.itens.push('Item')
+        },
+        remover() {
+          this.itens.pop()
+        }
+      }
+    })
+  </script>
+</body>
+</html>

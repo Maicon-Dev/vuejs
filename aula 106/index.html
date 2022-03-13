@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 106</title>
+</head>
+<body>
+  <div id="app">
+    <h1> {{ titulo }} </h1>
+    <p> {{ conteudo }} </p>
+    <p> {{ lado * lado - lado / 100 }} </p>
+    <p> {{ comprou ? "Caba arroxado" : "Compre, rapaaz" }} </p>
+
+    <div v-if="comprou">
+      <input v-model="cor" type="color">
+      <p>A cor escolhida: {{ cor }}</p>
+    </div>
+  </div>
+  
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        titulo: "Curso de Javascript",
+        conteudo: "Conteudo",
+        lado: 5,
+        comprou: true,
+        cor: ''
+      }
+    })
+  </script>
+</body>
+</html>

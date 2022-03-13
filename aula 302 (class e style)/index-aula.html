@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 301</title>
+</head>
+<body>
+  <div id="app">
+    <p class="bold"> Bold </p>
+    <p class="cursive"> Thin </p>
+
+    <button :class="ativo ? 'ativo' : 'inativo'" @click="ativo = !ativo"> Mudar cor do botão </button>
+
+    <button :style="{fontSize: fontSize + 'px'}" @click="fontSize++">Aumentar fonte</button>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        ativo: false,
+        fontSize: 20
+      }
+    })
+  </script>
+
+  <style>
+    .bold {
+      font-weight: bold;
+    }
+    .cursive {
+      font-family: cursive;
+    }
+    .ativo {
+      background-color: green;
+    }
+    .inativo {
+      background-color: red;
+    }
+  </style>
+</body>
+</html>

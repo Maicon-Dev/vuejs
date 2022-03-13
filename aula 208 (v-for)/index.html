@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button @click="fetchCourses"> Buscar cursos</button>
+    <ul>
+      <li v-for="curso in cursos">
+        <a :href="curso.link" target="_blank"><b> {{curso.curso}} </b></a>
+        <ul>
+          <li v-for="aula in curso.aulas"> <b>{{ aula.nome }}</b> –– {{ aula.tempo }}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        cursos: {}
+      },
+      methods: {
+        fetchCourses() {
+          fetch('./cursos.json')
+            .then(response => response.json())
+            .then(cursos => {
+              this.cursos = cursos
+            })
+        }
+      }
+    })
+  </script>
+</body>
+</html>

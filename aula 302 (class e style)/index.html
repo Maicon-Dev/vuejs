@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 301</title>
+</head>
+<body>
+  <div id="app">   
+    <ul @click="colorChange" :class="isColumn ? 'column' : '' ">
+      <li :style="{background: color}">Sobre</li>
+      <li :style="{background: color}">Produtos</li>
+      <li :style="{background: color}">Serviços</li>
+      <li :style="{background: color}">Contato</li>
+    </ul>
+    <button @click="isColumn = !isColumn">Alterar orientação da lista</button>
+    <button @click="colorChange"> Mudar cor </button>
+  </div>
+
+  <!-- Crie um gerador de cores, toda vez que o usuário clicar
+    em cima da lista, os itens trocam de cor.
+
+    Gerador de cor:
+    const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  -->
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        isColumn: false,
+        color: ''
+      },
+      methods: {
+        colorChange() {
+          this.color = `hsl(${Math.random() * 360}, 100%, 30%)`
+          console.log('Color: ', this.color)
+        }
+      }
+    })
+  </script>
+
+
+  <style>
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: monospace;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    .column {
+      flex-direction: column;
+    }
+    li {
+      padding: 20px;
+      background: #84e;
+      color: white;
+      border-radius: 4px;
+      margin: 10px;
+      flex: 1;
+      text-align: center;
+    }
+  </style>
+</body>
+</html>

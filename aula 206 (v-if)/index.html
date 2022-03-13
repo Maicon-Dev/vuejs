@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 206</title>
+</head>
+<body>
+  <div id="app">
+    <template>
+      <p>Itens carrinho: {{ carrinho }} </p>
+      <button v-if="estoque > 0" @click="adicionarAoCarrinho"> Adicionar </button>
+      <button v-else disabled="disabled"> Adicionar </button>
+
+      <button v-if="carrinho > 0" @click="removerDoCarrinho"> Remover </button>
+      <button v-else disabled="disabled"> Remover </button>
+    </template>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        carrinho: 0,
+        estoque: 7
+      },
+      methods: {
+        adicionarAoCarrinho() {
+          this.carrinho++
+          this.estoque--
+        },
+        removerDoCarrinho() {
+          this.carrinho--
+          this.estoque++
+        }
+      }
+    })
+  </script>
+</body>
+</html>

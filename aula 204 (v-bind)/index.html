@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>aula 204</title>
+</head>
+<body>
+  <div id="app">
+    <table v-if="buscou">
+      <tr>
+        <th>
+          {{ apple.companyName }}
+        </th>
+        <th>
+          {{ google.companyName }}
+        </th>
+      </tr>
+      <tr>
+        <td :class="apple.marketCap > google.marketCap ? 'maior' : 'menor'">
+          {{ apple.marketCap }}
+        </td>
+        <td :class="google.marketCap > apple.marketCap ? 'maior' : 'menor'">
+          {{ google.marketCap }}
+        </td>
+      </tr>
+    </table>
+    <button @click="buscarTodasAcoes">Buscar ações</button>
+  </div>
+  
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        apple: {},
+        google: {},
+        buscou: false
+      },
+      methods: {
+        buscarAcoesApple() {
+          fetch("https://cloud.iexapis.com/stable/stock/aapl/quote?token=pk_35da16c85cc54ddfae544050ebd1ce12")
+            .then(response => response.json())
+            .then(json => {
+              this.apple = json
+            })
+        },
+        buscaAcoesGoogle() {
+          fetch("https://cloud.iexapis.com/stable/stock/googl/quote?token=pk_35da16c85cc54ddfae544050ebd1ce12")
+            .then(response => response.json())
+            .then(json => {
+              this.google = json
+            })
+        },
+        buscarTodasAcoes() {
+          this.buscarAcoesApple()
+          this.buscaAcoesGoogle()
+          this.buscou = true
+        }
+      },
+    })
+  </script>
+
+  <style>
+    body {
+      background-color: slateblue;
+    }
+    table, th, td {
+      border: 1px solid white;
+      border-collapse: collapse;
+    }
+    .maior {
+      background-color: green;
+    }
+    .menor {
+      background: red
+    }
+  </style>
+</body>
+</html>

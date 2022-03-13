@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 303</title>
+</head>
+
+<body>
+  <div id="app">
+    <form class="col">
+      <label for="nome">Nome</label>
+      <input v-model="nome" id="nome" type="text">
+
+      <label for="email">Email</label>
+      <input v-model="email" id="email" type="text">
+
+      <label for="telefone">Telefone</label>
+      <input v-model="telefone" id="telefone" type="text">
+
+      <label for="mensagem">Mensagem</label>
+      <textarea v-model="mensagem" id="mensagem" type="text"> </textarea>
+
+      <input @click.prevent="enviado = true" style="display: block; margin-top: 10px;" type="submit">
+    </form>
+
+    <div v-if="enviado">
+      <p>Nome: {{nome}}</p>
+      <p>Email: {{email}}</p>
+      <p>Telefone: {{telefone}}</p>
+      <p>Mensagem: {{mensagem}}</p>
+    </div>
+  </div>
+  <!-- 
+      As escolhas serão feitas em campos de
+      formulário. Cada escolha deverá ser 
+      refletida em um elemento (o botão).
+
+
+      2 - Crie um formulário com, nome, email, telefone e mensagem.
+      Ao clicar em enviar, as informações preenchidas no formulário
+      devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+    -->
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: '',
+        email: '',
+        telefone: '',
+        mensagem: '',
+        enviado: false
+      }
+    })
+  </script>
+  
+  <style>
+    label {
+      display: block;
+      margin-top: 5px;
+    }
+  </style>
+</body>
+
+</html>

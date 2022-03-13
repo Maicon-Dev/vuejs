@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 202</title>
+</head>
+<body>
+  <div id="app">
+    <p>O {{ $data.$produto }} é do(a) {{ $data._empresa }}</p>
+    <p>O {{ produto }} é do(a) {{ empresa }} </p>
+
+    <p>
+      O lado do quadrado é: {{ ladoQuadrado }} <br>
+      O pêrimetro é: {{ ladoQuadrado * 4 }} <br>
+      A área é: {{ ladoQuadrado * ladoQuadrado }}
+    </p>
+  </div>
+  
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        _empresa: "Quickdata",
+        $produto: "Cupom Verde",
+        empresa: "Quickdata",
+        produto: "Cupom Verde",
+        ladoQuadrado: 5
+      },
+    })
+  </script>
+</body>
+</html>

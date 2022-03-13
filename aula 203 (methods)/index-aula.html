@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 203</title>
+</head>
+<body>
+  <div id="app">
+    <p>Contador: {{ count }}</p>
+    <div class="flex">
+      <button @click="increment">Adicionar</button>
+      <button @click="decrement">Remover</button>
+    </div>
+    <button @click="mudarInstrumento('violão')">Tocar violão</button>
+    <button @click="mudarInstrumento('piano')">Tocar piano</button>
+    <p v-if="instrumento"> Tocando {{ instrumento }} </p>
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        count: 0,
+        instrumento: ''
+      },
+      methods: {
+        increment() {
+          this.count++
+        },
+        decrement() {
+          this.count--
+        },
+        mudarInstrumento(instrumento) {
+          console.log(this)
+          this.instrumento = instrumento
+        }
+      }
+    })
+  </script>
+</body>
+</html>

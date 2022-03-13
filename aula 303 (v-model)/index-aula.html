@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./vue.js"></script>
+  <title>Aula 303</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="nome" type="text">
+    <p>Nome: {{nome}}</p>
+
+    <input v-model="checkbox" type="checkbox">
+    <p>Valor checkbox: {{checkbox}}</p>
+
+    <select v-model="fruta">
+      <option disabled value=""> Selecione uma fruta</option>
+      <option value="banana">Banana</option>
+      <option value="morango">Morango</option>
+      <option value="mamao">Mamão</option>
+    </select>
+    {{fruta}}
+  </div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        nome: '',
+        fruta: '',
+        checkbox: false
+      }
+    })
+  </script>
+</body>
+</html>
